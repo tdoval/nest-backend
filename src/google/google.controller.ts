@@ -7,8 +7,8 @@ export class GoogleController {
 
     @Post('/search')
     async searchGoogle(@Body() searchParams: any): Promise<any> {
-        const { frequencia, localidade, palavraChave } = searchParams;
-        const results = await this.googleService.searchGoogle(frequencia, localidade, palavraChave);
+        const { localidade, frequencia, palavraChave, retornoPesquisa } = searchParams;
+        const results = await this.googleService.searchGoogle(localidade, frequencia, palavraChave, retornoPesquisa);
         return results;
     }
 }

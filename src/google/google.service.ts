@@ -7,8 +7,9 @@ import { Resultado } from './resultado/resultado.model';
 export class GoogleService {
     constructor(@InjectModel('Resultado') private readonly resultadoModel: Model<Resultado>) { }
 
-    async searchGoogle(localidade: string, frequencia: string, palavraChave: string): Promise<Resultado> {
-        const resultado = new this.resultadoModel({ localidade, frequencia, palavraChave });
+    async searchGoogle(localidade: string, frequencia: string, palavraChave: string, retornoPesquisa: string): Promise<Resultado> {
+        const resultado = new this.resultadoModel({ localidade, frequencia, palavraChave, retornoPesquisa });
+        console.log(resultado);
         return await resultado.save();
     }
 }
