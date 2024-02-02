@@ -1,17 +1,21 @@
-import * as mongoose from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
 
-export const ResultadoSchema = new mongoose.Schema({
-    localidade: String,
-    frequencia: String,
-    palavraChave: String,
-    retornoPesquisa: String,
-});
-
-export interface Resultado extends mongoose.Document {
-    localidade: String,
-    frequencia: String,
-    palavraChave: String,
-    retornoPesquisa: String,
+interface Resultado extends Document {
+    localidade: string;
+    frequencia: string;
+    palavraChave: string;
+    codigoStatus?: number;
+    corpoResposta?: string;
 }
 
-export const ResultadoModel = mongoose.model<Resultado>('Resultado', ResultadoSchema);
+const ResultadoSchema = new Schema<Resultado>({
+    localidade: { type: String, required: true },
+    frequencia: { type: String, required: true },
+    palavraChave: { type: String },
+    codigoStatus: { type: Number },
+    corpoResposta: { type: String },
+});
+
+const ResultadoModel = model<Resultado>('Resultado', ResultadoSchema);
+
+export { ResultadoModel, ResultadoSchema };
